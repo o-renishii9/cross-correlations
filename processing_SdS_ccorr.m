@@ -174,74 +174,76 @@ for j=1:v;
 %% Perform cross correlation under some particular requirements
 % NOTE1: WHen the signals are anti-correlated, i.e r<0 then if r>-0.5 take
 % estimate the time delay at the lag which corresponds to the minimum correlation value
+maxLag400 = round(times_s400s(j)./dt);
+maxLag660 = round(times_s660s(j)./dt);
 
             if abs(R_ppt(j))>= 0.5 ;
-                [c_ppt,lags1] = xcorr(x1,x2,'coeff');
+                [c_ppt,lags1] = xcorr(x1,x2,maxLag400,'coeff');
                 [cmax1,icmax1] = max(abs(c_ppt));
                 [cmin1,icmin1] = min(abs(c_ppt));
-                if R_ppt(j) > 0;
+%                 if R_ppt(j) > 0;
                     icmx1(j) = (icmax1).*dt;
-                    delay_eva1= (1).*lags1(icmax1);
+                    delay_eva1= (-1).*lags1(icmax1);
                     actual_del1 = delay_eva1.*dt;
                     dt1(j) = actual_del1;
-                elseif R_ppt(j) < 0;
-                    icmn1(j) = (icmin1).*dt;
-                    delay_eva1= (1).*lags1(icmin1);
-                    actual_del1 = delay_eva1.*dt;
-                    dt1(j) = actual_del1;
-                end
+%                 elseif R_ppt(j) < 0;
+%                     icmn1(j) = (icmin1).*dt;
+%                     delay_eva1= (1).*lags1(icmin1);
+%                     actual_del1 = delay_eva1.*dt;
+%                     dt1(j) = actual_del1;
+%                 end
             end
             
             if abs(R_s20s20t(j)) >= 0.5;
-                [c_s20s20t,lags2] = xcorr(x3,x4,'coeff');
+                [c_s20s20t,lags2] = xcorr(x3,x4,maxLag400,'coeff');
                 [cmax2,icmax2] = max(abs(c_s20s20t));
                 [cmin2,icmin2] = min(abs(c_s20s20t));
-                if R_s20s20t(j) > 0 ;
+%                 if R_s20s20t(j) > 0 ;
                     icmx2(j) = (icmax2).*dt;
-                    delay_eva2= (1).*lags2(icmax2);
+                    delay_eva2= (-1).*lags2(icmax2);
                     actual_del2 = delay_eva2.*dt;
                     dt2(j) = actual_del2;
-                elseif R_s20s20t(j) < 0 ;
-                    icmn2(j) = (icmin2).*dt;
-                    delay_eva2= (1).*lags2(icmn2);
-                    actual_del2 = delay_eva2.*dt;
-                    dt2(j) = actual_del2;
-                end
+%                 elseif R_s20s20t(j) < 0 ;
+%                     icmn2(j) = (icmin2).*dt;
+%                     delay_eva2= (1).*lags2(icmn2);
+%                     actual_del2 = delay_eva2.*dt;
+%                     dt2(j) = actual_del2;
+%                 end
                 
             end
             
             if abs(R_pt_s20t(j)) >= 0.5;
-                [c_pt_s20t,lags3] = xcorr(x2,x4(1:xl2),'coeff');
+                [c_pt_s20t,lags3] = xcorr(x2,x4(1:xl2),maxLag400,'coeff');
                 [cmax3,icmax3] = max(abs(c_pt_s20t));
                 [cmin3,icmin3] = min(abs(c_pt_s20t));
-                if R_pt_s20t(j) < 0 ;
-                    icmn3(j) = (icmin3).*dt;
-                    delay_eva3= (1).*lags3(icmin3);
-                    actual_del3 = delay_eva3.*dt;
-                    dt3(j) = actual_del3;
-                elseif R_pt_s20t(j) > 0;
+%                 if R_pt_s20t(j) < 0 ;
+%                     icmn3(j) = (icmin3).*dt;
+%                     delay_eva3= (1).*lags3(icmin3);
+%                     actual_del3 = delay_eva3.*dt;
+%                     dt3(j) = actual_del3;
+%                 elseif R_pt_s20t(j) > 0;
                     icmx3(j) = (icmax3).*dt;
-                    delay_eva3= (1).*lags3(icmax3);
+                    delay_eva3= (-1).*lags3(icmax3);
                     actual_del3 = delay_eva3.*dt;
                     dt3(j) = actual_del3;
-                end
+%                 end
             end
             
             if abs(R_p_s20t(j)) >= 0.5;
-                [c_p_s20t,lags4] = xcorr(x1,x4(1:xl1),'coeff');
+                [c_p_s20t,lags4] = xcorr(x1,x4(1:xl1),maxLag400,'coeff');
                 [cmax4,icmax4] = max(abs(c_p_s20t));
                 [cmin4,icmin4] = min(abs(c_p_s20t));
-                if R_p_s20t(j) < 0;
-                    icmn4(j) = (icmin4).*dt;
-                    delay_eva4= (1).*lags4(icmin4);
-                    actual_del4 = delay_eva4.*dt;
-                    dt4(j) = actual_del4;
-                elseif R_p_s20t(j) > 0;
+%                 if R_p_s20t(j) < 0;
+%                     icmn4(j) = (icmin4).*dt;
+%                     delay_eva4= (1).*lags4(icmin4);
+%                     actual_del4 = delay_eva4.*dt;
+%                     dt4(j) = actual_del4;
+%                 elseif R_p_s20t(j) > 0;
                     icmx4(j) = (icmax4).*dt;
-                    delay_eva4= (1).*lags4(icmax4);
+                    delay_eva4= (-1).*lags4(icmax4);
                     actual_del4 = delay_eva4.*dt;
                     dt4(j) = actual_del4;
-                end
+%                 end
             end
             
             
@@ -308,74 +310,74 @@ for j=1:v;
             
             if abs(R_ppt660(j)) >= 0.5 ;
                 
-                [c_ppt660,lags11] = xcorr(x11,x22,'coeff');
+                [c_ppt660,lags11] = xcorr(x11,x22,maxLag660,'coeff');
                 [cmax11,icmax11]= max(abs(c_ppt660));
                 [cmin11,icmin11] = min(abs(c_ppt660));
-                if R_ppt660(j) > 0;
+%                 if R_ppt660(j) > 0;
                     icmx11(j) =  (icmax11).*dt;
                     delay_eva11= lags11(icmax11);
-                    actual_del11 = (1).*delay_eva11.*dt;
+                    actual_del11 = (-1).*delay_eva11.*dt;
                     dt11(j) = actual_del11;
-                elseif  R_ppt660(j) < 0;
-                    icmn11(j) =  (icmin11).*dt;
-                    delay_eva11= (1).*lags11(icmin11);
-                    actual_del11 = delay_eva11.*dt;
-                    dt11(j) = actual_del11;
-                end
+%                 elseif  R_ppt660(j) < 0;
+%                     icmn11(j) =  (icmin11).*dt;
+%                     delay_eva11= (1).*lags11(icmin11);
+%                     actual_del11 = delay_eva11.*dt;
+%                     dt11(j) = actual_del11;
+%                 end
             end
             
             if abs(R_s20s20t660(j)) >= 0.5;
                 
-                [c_s20s20t660,lags22] = xcorr(x33,x44,'coeff');
+                [c_s20s20t660,lags22] = xcorr(x33,x44,maxLag660,'coeff');
                 
                 [cmax22,icmax22] = max(abs(c_s20s20t660));
                 [cmin22,icmin22] = min(abs(c_s20s20t660));
-                if R_s20s20t660(j) > 0;
+%                 if R_s20s20t660(j) > 0;
                     icmx22(j) =  (icmax22).*dt;
-                    delay_eva22= (1).*lags22(icmax22);
+                    delay_eva22= (-1).*lags22(icmax22);
                     actual_del22 = delay_eva22.*dt;
                     dt22(j) = actual_del22;
-                elseif R_s20s20t660(j) < 0;
-                    icmn22(j) =  (icmin22).*dt;
-                    delay_eva22= (1).*lags22(icmin22);
-                    actual_del22 = delay_eva22.*dt;
-                    dt22(j) = actual_del22;
-                end
+%                 elseif R_s20s20t660(j) < 0;
+%                     icmn22(j) =  (icmin22).*dt;
+%                     delay_eva22= (1).*lags22(icmin22);
+%                     actual_del22 = delay_eva22.*dt;
+%                     dt22(j) = actual_del22;
+%                 end
             end
             
             if abs(R_pt_s20t660(j)) >= 0.5;
-                [c_pt_s20t660,lags33] = xcorr(x22,x44(1:xl22),'coeff');
+                [c_pt_s20t660,lags33] = xcorr(x22,x44(1:xl22),maxLag660,'coeff');
                 [cmax33,icmax33] = max(abs(c_pt_s20t660));
                 [cmin33,icmin33] = min(abs(c_pt_s20t660));
-                if R_pt_s20t660(j) > 0;
+%                 if R_pt_s20t660(j) > 0;
                     icmx33(j) =  (icmax33).*dt;
-                    delay_eva33= (1).*lags33(icmax33);
+                    delay_eva33= (-1).*lags33(icmax33);
                     actual_del33 = delay_eva33.*dt;
                     dt33(j) = actual_del33;
-                elseif R_pt_s20t660(j) < 0;
-                    icmn33(j) =  (icmin33).*dt;
-                    delay_eva33= (1).*lags33(icmin33);
-                    actual_del33 = delay_eva33.*dt;
-                    dt33(j) = actual_del33;
-                end
+%                 elseif R_pt_s20t660(j) < 0;
+%                     icmn33(j) =  (icmin33).*dt;
+%                     delay_eva33= (1).*lags33(icmin33);
+%                     actual_del33 = delay_eva33.*dt;
+%                     dt33(j) = actual_del33;
+%                 end
             end
             
             
             if abs(R_p_s20t660(j)) >= 0.5;
-                [c_p_s20t660,lags44] = xcorr(x11,x44(1:xl11),'coeff');
+                [c_p_s20t660,lags44] = xcorr(x11,x44(1:xl11),maxLag660,'coeff');
                 [cmax44,icmax44] = max(abs(c_p_s20t660));
                 [cmin44,icmin44] = min(abs(c_p_s20t660));
-                if R_p_s20t660(j) > 0;
+%                 if R_p_s20t660(j) > 0;
                     icmx44(j) = (icmax44).*dt;
-                    delay_eva44= (1).*lags44(icmax44);
+                    delay_eva44= (-1).*lags44(icmax44);
                     actual_del44 = delay_eva44.*dt;
                     dt44(j) = actual_del44;
-                elseif R_p_s20t660(j) < 0;
-                    icmn44(j) = (icmin44).*dt;
-                    delay_eva44= (1).*lags44(icmin44);
-                    actual_del44 = delay_eva44.*dt;
-                    dt44(j) = actual_del44;
-                end
+%                 elseif R_p_s20t660(j) < 0;
+%                     icmn44(j) = (icmin44).*dt;
+%                     delay_eva44= (1).*lags44(icmin44);
+%                     actual_del44 = delay_eva44.*dt;
+%                     dt44(j) = actual_del44;
+%                 end
             end
             
             
@@ -432,17 +434,15 @@ for k=1:4; % 4 combinations of models used now
         end
         
         coeff400 = polyfit(x400,y400,1);
+        P400 = polyval(coeff400,x400);
         % plot data
         figure()
-        plot(x400,y400,'*k');
-        hold on
-        plot(x400,y400,'*',1:length(x400),polyval(coeff400,x400),'-')    ;    
+        plot(x400,y400,'*',x400,P400,':') ;
         xlabel('measured travel time differences');
         ylabel('predicted travelt ime differences');
         title('Linear regreesion of predicted and measured dt (400 km)');
         
     end
-    
     
 end
 for kk= 5:8;
@@ -455,10 +455,10 @@ for kk= 5:8;
             y660 = dt_pred_660(ll);
         end
         coeff660 = polyfit(x660,y660,1);
+        P660 = polyval(coeff660,x660)
         % plot data
         figure()
-    
-        plot(x660,y660,'*',1:length(x660),polyval(coeff660,x660),'-')     ;  
+        plot(x660,y660,'*',x660,P660,':') 
         xlabel('measured travel time differences');
         ylabel('predicted travelt ime differences');
         title('Linear regreesion of predicted and measured dt (660 km)');
